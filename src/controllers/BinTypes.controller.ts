@@ -5,7 +5,13 @@ class BinTypesController {
 
     public postBinType(req : Request, res : Response) {
         let binType = BinsTypeModel.build( {id_type: null, name : req.body.name } );
-        binType.save();
+        binType.save()
+        .then(() => {
+            res.sendStatus(201);
+        })
+        .catch( () => {
+            res.status(400).send("Bad");
+        });
     }
 
 }

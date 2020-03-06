@@ -4,9 +4,14 @@ import BinsModel from '../models/Bins.model';
 class BinController {
 
     public getAllTrash(req : Request, res : Response) {
-        BinsModel.findAll().then((x) => {
-            res.send(x);
+        BinsModel.findAll().then((binds) => {
+            res.send(binds);
         })
+    }
+
+    public testingVictor(req : Request, res : Response) {
+        res.send('Rubish Bin Full');
+        console.log(req.body);
     }
 
 }

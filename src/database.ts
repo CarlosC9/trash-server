@@ -1,11 +1,12 @@
 import { Sequelize } from 'sequelize-typescript';
+import { mysqldb } from './keys';
 
 export const sequelize = new Sequelize({
-    host: 'localhost',
+    host: mysqldb.HOST,
     dialect: 'mysql',
-    username: 'root',
-    password: 'pepe',
-    database: 'saveleafdb',
+    username: mysqldb.USERNAME,
+    password: mysqldb.PASSWORD,
+    database: mysqldb.DATABASE,
     pool: {
         max: 5,
         min: 0,

@@ -7,6 +7,7 @@ const PORT = 3000;
 // Importing routes
 import binRoutes from './routes/Bin.router';
 import binTypeRoutes from './routes/BinType.router';
+import userRoutes from './routes/User.router';
 
 // Initalizacion
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 app.use('/bin', binRoutes)
 app.use('/binType', binTypeRoutes);
+app.use('/user', userRoutes);
 
 // Static Files
 
