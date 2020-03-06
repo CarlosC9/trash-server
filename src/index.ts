@@ -1,31 +1,37 @@
+import { sequelize } from './database';
 import express from 'express';
-// var cors = require('cors');
+var cors = require('cors');
 
 const PORT = 3000;
 
 // Importing routes
-import trashRoutes from './routes/trashRouter';
+import binRoutes from './routes/Bin.router';
+import binTypeRoutes from './routes/BinType.router';
 
 // Initalizacion
 const app = express();
-import './database';
 
 // Settings
 app.set('port', process.env.PORT || PORT);
 
 // Middleware
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.use('/trash', trashRoutes);
-
+app.use('/bin', binRoutes)
+app.use('/binType', binTypeRoutes);
 
 // Static Files
 
-
 // Starting the server
-app.listen(app.get('port'), () => {
-    console.log(`Server on port ${app.get('port')}`);
-});
+(async () => {
+
+    await sequelize.sync({ force: false });
+
+    app.listen(app.get('port'), () => {
+        console.log(`Server on port ${app.get('port')}`);
+    });
+
+})();

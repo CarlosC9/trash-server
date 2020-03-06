@@ -1,10 +1,16 @@
-import mongoose from 'mongoose';
+import { Sequelize } from 'sequelize-typescript';
 
-import { mongodb } from './keys';
-
-mongoose.connect(mongodb.URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-    .then( db => console.log('DB is connected'))
-    .catch( err => console.log(err)) ;
+export const sequelize = new Sequelize({
+    host: 'localhost',
+    dialect: 'mysql',
+    username: 'root',
+    password: 'pepe',
+    database: 'saveleafdb',
+    pool: {
+        max: 5,
+        min: 0,
+        idle: 10000,
+    },
+    logging: false,
+    models: [__dirname + '/models/*.model.ts']
+});
