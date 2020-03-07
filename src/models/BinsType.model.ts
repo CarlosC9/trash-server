@@ -1,5 +1,6 @@
 import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, AllowNull, HasMany } from 'sequelize-typescript';
 import BinsModel from './Bins.model';
+import BinsPrivateModel from './BinsPrivate.model';
 
 @Table({
     tableName: 'bintype',
@@ -25,4 +26,7 @@ export default class BinsTypeModel extends Model<BinsTypeModel> {
 
     @HasMany( () => BinsModel )
     bins: BinsModel[];
+
+    @HasMany( () => BinsPrivateModel )
+    binsPrivate: BinsPrivateModel[];
 }

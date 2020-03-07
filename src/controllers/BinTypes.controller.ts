@@ -14,6 +14,11 @@ class BinTypesController {
         });
     }
 
+    public async getAllBinTypes(req : Request, res : Response) {
+        let allBinTypes = await BinsTypeModel.findAll();
+        return res.status(200).send(allBinTypes);
+    }
+
 }
 
 export const binTypesController = new BinTypesController();

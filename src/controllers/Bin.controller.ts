@@ -9,9 +9,11 @@ class BinController {
         })
     }
 
-    public testingVictor(req : Request, res : Response) {
-        res.send('Rubish Bin Full');
-        console.log(req.body);
+    public async getBinByType(req : Request, res : Response) {
+        const { binTypeId } = req.body;
+        if(!binTypeId) res.status(300).send('Bad Request: binTypeId undefinded');
+        let bins = await BinsModel.findAll({ where: { binTypeId : binTypeId } });
+        return res.status(200).send(bins);
     }
 
 }

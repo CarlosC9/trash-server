@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, AllowNull, Unique } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, AllowNull, Unique, HasMany } from 'sequelize-typescript';
+import BinsPrivateModel from './BinsPrivate.model';
 
 @Table({
     tableName: 'user',
@@ -29,4 +30,7 @@ export default class UserModel extends Model<UserModel> {
         field: 'password'
     })
     password : string;
+
+    @HasMany( () => BinsPrivateModel )
+    binsPrivate: BinsPrivateModel[];
 }
