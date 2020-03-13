@@ -16,6 +16,28 @@ class BinController {
         return res.status(200).send(bins);
     }
 
+
+    public async getBinByOrganic(req : Request, res : Response) {
+        let bins = await BinsModel.findAll({ where: { binTypeId : 1 } });
+        return res.status(200).send(bins);
+    }
+
+    public async getBinByGlass(req : Request, res : Response) {
+        let bins = await BinsModel.findAll({ where: { binTypeId : 2 } });
+        return res.status(200).send(bins);
+    }
+
+    public async getBinByPaper(req : Request, res : Response) {
+        let bins = await BinsModel.findAll({ where: { binTypeId : 3 } });
+        return res.status(200).send(bins);
+    }
+
+    public async getBinByPlastic(req : Request, res : Response) {
+        let bins = await BinsModel.findAll({ where: { binTypeId : 4 } });
+        return res.status(200).send(bins);
+    }
+
+
 }
 
 export const binController = new BinController();

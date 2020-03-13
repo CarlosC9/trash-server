@@ -38,11 +38,30 @@ class BinPrivateController {
         return res.status(200).send(bins);
     }
 
+    public async getAllBinFullByType(req: any, res: Response) {
+        if (!req.query.type) return res.status(300).send("Bad Request: undefined type");
+        let bins = await BinsPrivateModel.findAll({where: { userId: req.userId, full: true, binTypeId: req.query.type }})
+        return res.status(200).send(bins);
+    }
+
+    public async getAllBinNotFullByType(req: any, res: Response) {
+        if (!req.query.type) return res.status(300).send("Bad Request: undefined type");
+        let bins = await BinsPrivateModel.findAll({where: { userId: req.userId, full: false, binTypeId: req.query.type }})
+        return res.status(200).send(bins);
+    }
+
     public async getAllBin(req: any, res: Response) {
         let bins = await BinsPrivateModel.findAll({where: { userId: req.userId}})
         return res.status(200).send(bins);
     }
 
+    public async getStateBinFull(req: Request, res: Response) {
+        const { id_private_bin } = req.body;
+        if(!id_private_bin) return res.status(300).send("Bad Request: id_private_bind undefined or null");
+        let bin = await BinsPrivateModel.findOne({ where: { id_private_bin : id_private_bin } });
+        if (!bin) return res.status(404).send("Not Found: Bin not found");
+        return res.status(200).send({ full: bin.full });
+    }
     
 }
 
